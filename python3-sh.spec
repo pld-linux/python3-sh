@@ -12,6 +12,8 @@ License:	MIT
 Group:		Libraries/Python
 Source0:	https://files.pythonhosted.org/packages/source/s/sh/%{module}-%{version}.tar.gz
 # Source0-md5:	961d38de16f88556bd70381eddd7f415
+Patch0:		sh-udev.patch
+Patch1:		sh-tests.patch
 URL:		https://pypi.org/project/sh/
 BuildRequires:	python3-build
 BuildRequires:	python3-installer
@@ -38,6 +40,8 @@ funkcją.
 
 %prep
 %setup -q -n %{module}-%{version}
+%patch -P0 -p1
+%patch -P1 -p1
 
 %build
 %py3_build_pyproject

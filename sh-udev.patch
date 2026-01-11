@@ -1,0 +1,30 @@
+Some udev-based systems don't have /dev/fd symlink
+--- sh-2.2.2/tests/sh_test.py.orig	1970-01-01 01:00:00.000000000 +0100
++++ sh-2.2.2/tests/sh_test.py	2026-01-11 10:40:53.878040216 +0100
+@@ -622,7 +622,7 @@ print("hi")
+         py = create_tmp_test(
+             """
+ import os
+-print(len(os.listdir("/dev/fd")))
++print(len(os.listdir("/proc/self/fd")))
+ """
+         )
+         out = python(py.name, _close_fds=False).strip()
+@@ -650,7 +650,7 @@ print(len(os.listdir("/dev/fd")))
+         py = create_tmp_test(
+             """
+ import os
+-print(os.listdir("/dev/fd"))
++print(os.listdir("/proc/self/fd"))
+ """
+         )
+         out = python(py.name).strip()
+@@ -677,7 +677,7 @@ print(os.listdir("/dev/fd"))
+         py = create_tmp_test(
+             """
+ import os
+-print(os.listdir("/dev/fd"))
++print(os.listdir("/proc/self/fd"))
+ """
+         )
+         out = python(py.name, _pass_fds=[last_fd]).strip()

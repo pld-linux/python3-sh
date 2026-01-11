@@ -1,0 +1,11 @@
+--- sh-2.2.2/tests/sh_test.py.orig	2026-01-11 10:55:13.222697999 +0100
++++ sh-2.2.2/tests/sh_test.py	2026-01-11 11:01:15.431328461 +0100
+@@ -545,6 +545,8 @@ while True:
+ 
+         # this is the environment we'll pass into our commands
+         env = {"HERP": "DERP"}
++        if "PYTHONPATH" in os.environ:
++            env["PYTHONPATH"] = os.environ["PYTHONPATH"]
+ 
+         # first we test that the environment exists in our child process as
+         # we've set it
